@@ -1,0 +1,81 @@
+<div class="container">
+    <mat-toolbar color="primary" class="app-toolbar">
+    <div class="toolbar-content">
+        <div class="brand">
+        <span class="brand-title">INTERVEX</span>
+        <span class="brand-subtitle">Interview Management System</span>
+        </div>
+    </div>
+    </mat-toolbar>
+    <div class="form-container">
+        <div class="page-header">
+            <h1>Add Company</h1>
+            <p>Enter interview contact details</p>
+        </div>
+        <mat-card class="form-card">
+            <form class="form-layout">
+                <!-- ROW 1 -->
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Company Name</mat-label>
+                    <input matInput required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>HR Name</mat-label>
+                    <input matInput />
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>HR Phone</mat-label>
+                    <input matInput required />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>HR Email</mat-label>
+                    <input matInput />
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Status </mat-label>
+                        <mat-select>
+                            <mat-option value="In Progress">In Progress</mat-option>                        
+                            <mat-option value="In Progress">L1</mat-option>                        
+                            <mat-option value="In Progress">L2</mat-option>                        
+                            <mat-option value="In Progress">L3</mat-option>                        
+                            <mat-option value="In Progress">Rejected</mat-option>   
+                            <mat-option value="On Hold">On Hold</mat-option>                     
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Notes</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="button-row">
+                    <button
+                    mat-button
+                    type="button"
+                    routerLink="/companies">
+                    Cancel
+                    </button>
+
+                    <button
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                    >
+                    Save
+                    </button>
+                </div>
+            </form>  
+        </mat-card>
+        
+
+    </div>
+    
+</div>

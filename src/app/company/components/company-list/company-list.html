@@ -1,0 +1,150 @@
+<div class="container">
+    <!-- ===================== -->
+    <!-- INTERVEX HEADER -->
+    <!-- ===================== -->
+
+    <mat-toolbar color="primary" class="app-toolbar">
+    <div class="toolbar-content">
+        <div class="brand">
+        <span class="brand-title">INTERVEX</span>
+        <span class="brand-subtitle">Interview Management System</span>
+        </div>
+    </div>
+    </mat-toolbar>
+
+    <!-- ===================== -->
+    <!-- PAGE CONTAINER -->
+    <!-- ===================== -->
+
+    <div class="page-container">
+
+    <!-- PAGE TITLE -->
+    <div class="page-header">
+        <h1>Companies</h1>
+        <p>Manage interview contacts efficiently</p>
+    </div>
+
+    <!-- ACTION BAR -->
+    <div class="action-bar">
+        <button
+        mat-raised-button
+        color="primary"
+        routerLink="/companies/add">
+        <mat-icon>add</mat-icon>
+        Add Company
+        </button>
+
+        <mat-slide-toggle
+        [checked]="showArchived()"
+        (change)="toggleArchived()">
+        Show Archived
+        </mat-slide-toggle>
+    </div>
+
+    <!-- COMPANY TABLE CARD -->
+    <mat-card class="table-card">
+
+        @if ((companies())?.length === 0) {
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state">
+            <mat-icon class="empty-icon">business</mat-icon>
+            <h3>No companies added yet</h3>
+            <button
+            mat-raised-button
+            color="primary"
+            routerLink="/companies/add">
+            Add First Company
+            </button>
+        </div>
+
+        } @else {
+
+        <!-- TABLE -->
+        <div class="table-wrapper">
+            <table
+            mat-table
+            [dataSource]="companies()"
+            class="mat-elevation-z1 full-width-table">
+
+            <!-- Company Column -->
+            <ng-container matColumnDef="companyName">
+                <th mat-header-cell *matHeaderCellDef>Company</th>
+                <td mat-cell *matCellDef="let company">
+                <strong>{{ company.companyName }}</strong>
+                </td>
+            </ng-container>
+
+            <!-- HR Name Column -->
+            <ng-container matColumnDef="hrName">
+                <th mat-header-cell *matHeaderCellDef>HR Name</th>
+                <td mat-cell *matCellDef="let company">
+                {{ company.hrName }}
+                </td>
+            </ng-container>
+
+            <!-- Phone Column -->
+            <ng-container matColumnDef="hrPhone">
+                <th mat-header-cell *matHeaderCellDef>Phone</th>
+                <td mat-cell *matCellDef="let company">
+                <a
+                    class="phone-link"
+                    href="tel:{{ company.hrPhone }}">
+                    {{ company.hrPhone }}
+                </a>
+                </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let company">
+                <mat-chip
+                    [ngClass]="company.status.toLowerCase()">
+                    {{ company.status }}
+                </mat-chip>
+                </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let company">
+
+                <button
+                    mat-icon-button
+                    color="primary"
+                    [routerLink]="['/companies/edit', company.id]">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+                <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="archiveCompany(company.id)">
+                    <mat-icon>archive</mat-icon>
+                </button>
+
+                </td>
+            </ng-container>
+
+            <!-- Header & Row -->
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns">
+            </tr>
+
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            </table>
+        </div>
+
+        }
+
+    </mat-card>
+    </div>
+</div>
+
